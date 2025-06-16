@@ -17,12 +17,84 @@
             background: linear-gradient(to bottom, #f8fafc, #dbeafe, #fecaca);
             min-height: 100vh;
             color: #1e40af;
+            overflow-x: hidden;
         }
 
         .container {
             min-height: 100vh;
             position: relative;
             padding: 20px;
+        }
+
+        /* Анимированный российский флаг */
+        .flag-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            z-index: -2;
+            opacity: 0.3;
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        .flag-stripe {
+            width: 100%;
+            height: 33.33%;
+        }
+
+        .flag-white { background: #ffffff; }
+        .flag-blue { background: #0039a6; }
+        .flag-red { background: #d52b1e; }
+
+        @keyframes wave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.05); }
+        }
+
+        /* Символика МО РФ */
+        .mo-symbols {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: -1;
+            opacity: 0.2;
+            display: flex;
+            gap: 20px;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .mo-emblem {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #ffd700 30%, #ff6b35 70%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #8b0000;
+            font-size: 12px;
+            text-align: center;
+            border: 3px solid #8b0000;
+        }
+
+        .star-symbol {
+            width: 60px;
+            height: 60px;
+            background: #ffd700;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.4; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         /* Электронные часы */
@@ -38,13 +110,16 @@
             font-size: 24px;
             font-weight: bold;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            z-index: 10;
         }
 
         /* Заголовки */
         .header {
             text-align: center;
-            padding-top: 100px;
+            padding-top: 120px;
             margin-bottom: 40px;
+            position: relative;
+            z-index: 5;
         }
 
         .main-title {
@@ -52,7 +127,7 @@
             font-weight: bold;
             color: #1e40af;
             margin-bottom: 15px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
         }
 
         .subtitle {
@@ -60,12 +135,14 @@
             font-weight: 600;
             color: #1d4ed8;
             margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.6);
         }
 
         .division {
             font-size: 20px;
             font-weight: 500;
             color: #2563eb;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.4);
         }
 
         /* Видеоплеер */
@@ -73,6 +150,8 @@
             display: flex;
             justify-content: center;
             margin-bottom: 50px;
+            position: relative;
+            z-index: 5;
         }
 
         .video-wrapper {
@@ -90,50 +169,84 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.2);
         }
 
-        /* Навигационные кнопки */
+        /* Навигационные кнопки - ОПТИМИЗИРОВАНЫ */
         .navigation {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 5;
         }
 
         .button-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 20px;
         }
 
         .nav-button {
-            height: 80px;
-            background: #1e40af;
+            min-height: 90px;
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
             color: white;
-            border: 3px solid #1d4ed8;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
+            border: 2px solid #1e3a8a;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.3;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            padding: 15px;
+            letter-spacing: 0.5px;
+            padding: 20px 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            word-wrap: break-word;
+            hyphens: auto;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
         }
 
         .nav-button:hover {
-            background: #1d4ed8;
+            background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
             border-color: #1e3a8a;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(30, 64, 175, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(30, 64, 175, 0.4);
+            font-size: 17px;
         }
 
         .nav-button:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
         }
 
         /* Адаптивность */
         @media (max-width: 768px) {
+            .flag-background {
+                height: 150px;
+            }
+            
+            .mo-symbols {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .mo-emblem {
+                width: 60px;
+                height: 60px;
+                font-size: 10px;
+            }
+            
+            .star-symbol {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .header {
+                padding-top: 100px;
+            }
+            
             .main-title {
                 font-size: 24px;
             }
@@ -151,13 +264,18 @@
             }
             
             .button-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 15px;
             }
             
             .nav-button {
-                height: 70px;
-                font-size: 12px;
+                min-height: 80px;
+                font-size: 14px;
+                padding: 15px 12px;
+            }
+            
+            .nav-button:hover {
+                font-size: 15px;
             }
             
             .clock {
@@ -172,7 +290,33 @@
       <script src="https://cdn.poehali.dev/intertnal/js/inspector-min.js"></script>
   </head>
 <body>
+    <!-- Анимированный российский флаг -->
+    <div class="flag-background">
+        <div class="flag-stripe flag-white"></div>
+        <div class="flag-stripe flag-blue"></div>
+        <div class="flag-stripe flag-red"></div>
+    </div>
+
+    <!-- Символика МО РФ -->
+    <div class="mo-symbols">
+        <div class="mo-emblem">МО РФ</div>
+        <div class="star-symbol"></div>
+    </div>
+
     <div class="container">
+        <!-- Анимированный российский флаг -->
+        <div class="flag-background">
+            <div class="flag-stripe flag-white"></div>
+            <div class="flag-stripe flag-blue"></div>
+            <div class="flag-stripe flag-red"></div>
+        </div>
+
+        <!-- Символика МО РФ -->
+        <div class="mo-symbols">
+            <div class="mo-emblem">МО РФ</div>
+            <div class="star-symbol"></div>
+        </div>
+
         <!-- Электронные часы -->
         <div class="clock" id="clock">
             00:00:00
