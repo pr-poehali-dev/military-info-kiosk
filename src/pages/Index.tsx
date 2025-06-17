@@ -45,7 +45,7 @@ const Index = () => {
       {/* Военная эмблема */}
       <div className="flex justify-center mb-4">
         <img
-          src="https://cdn.poehali.dev/files/39625d85-77cc-4b6e-9195-52f484d3ce5d.png"
+          src="https://cdn.poehali.dev/files/637050e2-14ee-4681-884e-5e490911fffe.png"
           alt="Военная эмблема"
           className="w-32 h-32 object-contain"
         />
