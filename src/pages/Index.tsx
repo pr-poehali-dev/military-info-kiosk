@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
+import Calendar from "@/components/ui/calendar";
+import Ticker from "@/components/ui/ticker";
+import LanguageSwitcher from "@/components/ui/language-switcher";
+import MilitaryButton from "@/components/ui/military-button";
 
 const Index = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -14,42 +18,68 @@ const Index = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const { t } = useLanguage();
+
   const navigationButtons = [
-    { label: "ОБРАЗЦЫ ДОКУМЕНТОВ", path: "/documents" },
-    { label: "КОНТАКТЫ", path: "/contacts" },
-    { label: "ИНФОРМАЦИЯ ДЛЯ ВОЕННОСЛУЖАЩИХ", path: "/military-info" },
-    { label: "СПРАВКИ", path: "/certificates" },
-    { label: "ДАННЫЕ ДЛЯ ПОСТРАДАВШИХ ВОЕННОСЛУЖАЩИХ", path: "/victims-data" },
-    {
-      label: "ДАННЫЕ ПО ОФОРМЛЕНИЮ ПОГИБШИХ ВОЕННОСЛУЖАЩИХ",
-      path: "/deceased-data",
-    },
-    { label: "ЛЬГОТЫ ВОЕННОСЛУЖАЩИХ И ЧЛЕНОВ ИХ СЕМЕЙ", path: "/benefits" },
-    { label: "ОТПУСКА", path: "/vacations" },
+    { label: t("documents"), path: "/documents" },
+    { label: t("contacts"), path: "/contacts" },
+    { label: t("militaryInfo"), path: "/military-info" },
+    { label: t("certificates"), path: "/certificates" },
+    { label: t("victimsData"), path: "/victims-data" },
+    { label: t("deceasedData"), path: "/deceased-data" },
+    { label: t("benefits"), path: "/benefits" },
+    { label: t("vacations"), path: "/vacations" },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-100 via-blue-50 to-red-50">
-      {/* Электронные часы */}
-      <div className="absolute top-4 left-4 bg-black text-green-400 px-4 py-2 rounded font-mono text-xl">
-        {currentTime.toLocaleTimeString("ru-RU")}
+      {/* Верхняя панель с часами, календарем и переключателем языков */}
+      <div className="flex justify-between items-start p-4">
+        <div className="bg-black text-green-400 px-4 py-2 rounded font-mono text-xl">
+          {currentTime.toLocaleTimeString("ru-RU")}
+        </div>
+        <Calendar />
+        <LanguageSwitcher />
       </div>
 
-      {/* Заголовок */}
-      <div className="text-center pt-20 pb-8">
-        <h1 className="text-2xl font-bold text-blue-800 mb-2">
-          ЮЖНЫЙ АРКТИЧЕСКИЙ ВОЕННЫЙ ОКРУГ
+      {/* Военная эмблема */}
+      <div className="flex justify-center mb-4">
+        <img
+          src="https://cdn.poehali.dev/files/39625d85-77cc-4b6e-9195-52f484d3ce5d.png"
+          alt="Военная эмблема"
+          className="w-32 h-32 object-contain"
+        />
+      </div>
+
+      {/* Заголовок в цветах российского флага */}
+      <div className="text-center mb-6">
+        <h1 className="text-3xl font-bold mb-2">
+          <span className="text-white bg-blue-700 px-2 py-1 rounded-l">
+            ПУНКТ
+          </span>
+          <span className="text-blue-700 bg-white px-2 py-1 border-y border-blue-700">
+            ВОЕННО
+          </span>
+          <span className="text-white bg-red-600 px-2 py-1 rounded-r">
+            СОЦИАЛЬНОЙ РАБОТЫ
+          </span>
         </h1>
         <h2 className="text-xl font-semibold text-blue-700 mb-1">
-          180 ОБЩЕВОЙСКОВАЯ АРМИЯ
+          {t("subtitle1")}
         </h2>
-        <h3 className="text-lg font-medium text-blue-600">
-          709 СТРЕЛКОВАЯ ДИВИЗИЯ
+        <h3 className="text-lg font-medium text-blue-600 mb-1">
+          {t("subtitle2")}
         </h3>
+        <h4 className="text-base font-medium text-blue-500">
+          {t("subtitle3")}
+        </h4>
       </div>
 
+      {/* Бегущая строка */}
+      <Ticker text={t("ticker")} />
+
       {/* Видеоплеер */}
-      <div className="flex justify-center mb-8">
+      <div className="flex justify-center my-8">
         <div className="w-full max-w-4xl mx-4">
           <video
             className="w-full h-96 bg-black border-4 border-blue-700 rounded-lg shadow-lg"
@@ -66,13 +96,9 @@ const Index = () => {
       <div className="max-w-6xl mx-auto px-4 pb-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {navigationButtons.map((button, index) => (
-            <Button
-              key={index}
-              onClick={() => navigate(button.path)}
-              className="h-20 text-sm font-medium bg-blue-700 hover:bg-blue-800 text-white border-2 border-blue-800 hover:border-blue-900 transition-all duration-200"
-            >
+            <MilitaryButton key={index} onClick={() => navigate(button.path)}>
               {button.label}
-            </Button>
+            </MilitaryButton>
           ))}
         </div>
       </div>
