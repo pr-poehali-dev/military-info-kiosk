@@ -20,12 +20,16 @@ const MilitaryButton: React.FC<MilitaryButtonProps> = ({
 
   return (
     <Button
-      onClick={onClick}
+      onClick={(e) => {
+        e.preventDefault();
+        console.log("Кнопка нажата, переход на:", onClick);
+        onClick();
+      }}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseLeave}
       className={`
-        h-20 text-sm font-medium transition-all duration-150 transform
+        h-20 text-sm font-medium transition-all duration-150 transform cursor-pointer
         ${
           isPressed
             ? "bg-green-600 border-green-700 scale-95 shadow-inner"

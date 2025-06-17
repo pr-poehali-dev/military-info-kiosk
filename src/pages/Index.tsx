@@ -45,28 +45,23 @@ const Index = () => {
         <LanguageSwitcher />
       </div>
 
-      {/* Военная эмблема */}
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center mb-6">
         <img
           src="https://cdn.poehali.dev/files/637050e2-14ee-4681-884e-5e490911fffe.png"
           alt="Военная эмблема"
           className="w-32 h-32 object-contain"
+          onError={(e) => {
+            console.log("Ошибка загрузки изображения");
+            e.currentTarget.src =
+              "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=128&h=128&fit=crop";
+          }}
         />
       </div>
 
-      {/* Заголовок в цветах российского флага */}
+      {/* Заголовок убран - используем только RussianFlagHeader */}
+
+      {/* Подзаголовки */}
       <div className="text-center mb-6">
-        <h1 className="text-3xl font-bold mb-2">
-          <span className="text-white bg-blue-700 px-2 py-1 rounded-l">
-            ПУНКТ
-          </span>
-          <span className="text-blue-700 bg-white px-2 py-1 border-y border-blue-700">
-            ВОЕННО
-          </span>
-          <span className="text-white bg-red-600 px-2 py-1 rounded-r">
-            СОЦИАЛЬНОЙ РАБОТЫ
-          </span>
-        </h1>
         <h2 className="text-xl font-semibold text-blue-700 mb-1">
           {t("subtitle1")}
         </h2>
