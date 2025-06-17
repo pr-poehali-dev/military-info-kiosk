@@ -5,6 +5,7 @@ import Calendar from "@/components/ui/calendar";
 import Ticker from "@/components/ui/ticker";
 import LanguageSwitcher from "@/components/ui/language-switcher";
 import MilitaryButton from "@/components/ui/military-button";
+import RussianFlagHeader from "@/components/ui/russian-flag-header";
 
 const Index = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -33,6 +34,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-100 via-blue-50 to-red-50">
+      <RussianFlagHeader className="bg-gradient-to-r from-slate-200 to-slate-300" />
+
       {/* Верхняя панель с часами, календарем и переключателем языков */}
       <div className="flex justify-between items-start p-4">
         <div className="bg-black text-green-400 px-4 py-2 rounded font-mono text-xl">

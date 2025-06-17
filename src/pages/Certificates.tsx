@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
+import RussianFlagHeader from "@/components/ui/russian-flag-header";
 
 const Certificates = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-100 via-blue-50 to-red-50">
+      <RussianFlagHeader className="bg-gradient-to-r from-slate-200 to-slate-300" />
+
       <div className="container mx-auto px-4 py-8">
         <Button
           onClick={() => navigate("/")}
