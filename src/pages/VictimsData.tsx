@@ -1,62 +1,27 @@
-import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import Icon from "@/components/ui/icon";
-import RussianFlagHeader from "@/components/ui/russian-flag-header";
+import { useNavigate } from "react-router-dom";
 
 const VictimsData = () => {
+  const { t } = useLanguage();
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-100 via-blue-50 to-red-50">
-      <RussianFlagHeader className="bg-gradient-to-r from-slate-200 to-slate-300" />
-
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-b from-slate-100 via-blue-50 to-red-50 p-4">
+      <div className="max-w-4xl mx-auto">
         <Button
           onClick={() => navigate("/")}
           className="mb-6 bg-blue-700 hover:bg-blue-800"
         >
-          <Icon name="ArrowLeft" size={20} className="mr-2" />
-          Назад на главную
+          ← Назад
         </Button>
 
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-blue-800 mb-4">
-            ДАННЫЕ ДЛЯ ПОСТРАДАВШИХ ВОЕННОСЛУЖАЩИХ
-          </h1>
-        </div>
+        <h1 className="text-3xl font-bold text-blue-700 mb-6">
+          {t("victimsData") || "Данные пострадавших"}
+        </h1>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <div className="space-y-6">
-              <div className="border-l-4 border-blue-700 pl-4">
-                <h3 className="text-xl font-semibold text-blue-800 mb-3">
-                  Порядок обращения
-                </h3>
-                <p className="text-gray-600">
-                  Информация о порядке обращения за помощью пострадавшим
-                  военнослужащим
-                </p>
-              </div>
-
-              <div className="border-l-4 border-red-600 pl-4">
-                <h3 className="text-xl font-semibold text-blue-800 mb-3">
-                  Необходимые документы
-                </h3>
-                <p className="text-gray-600">
-                  Перечень документов, необходимых для получения помощи
-                </p>
-              </div>
-
-              <div className="border-l-4 border-slate-600 pl-4">
-                <h3 className="text-xl font-semibold text-blue-800 mb-3">
-                  Контакты для обращения
-                </h3>
-                <p className="text-gray-600">
-                  Телефоны и адреса для обращения пострадавших военнослужащих
-                </p>
-              </div>
-            </div>
-          </div>
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <p className="text-gray-700">Здесь будут данные пострадавших</p>
         </div>
       </div>
     </div>
